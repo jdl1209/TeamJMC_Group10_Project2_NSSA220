@@ -25,16 +25,30 @@ def filter_packets(text_file):
         if (request in line) or (reply in line):
             temp_list=[]
             line=line.strip()
+
+            #Creates the Header for each Request/Reply
             temp_list.append("No.  Time \t\t   Source \t\t\t     Destination   \t\t   Protocol Length Info")
+            
+            #Appends the line being read: Frame Number, Time, Source, Destination, Protocol, Length, Info
             temp_list.append(line)
             line=file.readline()
+
+            """
+            ICMP echo Requests/Replys have 5 lines of Hex Information
+            After the base info is recorded (described above), the 5
+            are added to the temp_list 
+            """
             i=0
             while i < 6:
                 line=line.strip()
                 temp_list.append(line)
                 line=file.readline()
                 i+=1
+
+            #All information from the frame being read is added to the overall list as its own item
             overall_list.append(temp_list)
+
+        #If no Request/Reply is found, the line is ignored and the file continues to be read
         else:
             line=file.readline()
             continue
