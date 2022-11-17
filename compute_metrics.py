@@ -4,8 +4,12 @@ def compute_metrics(node):
     i=0
     request_sent=0
     request_data=0
-    # If Source is 192.168.100.1 == Request Sent
-    # If Destination is 192.168.1001 == Request Recieved
+    """
+    If Source is 192.168.100.1 and echo request == Request Sent, add that line to its own list
+    If Destination is 192.168.100.1 and echo request == Request Recieved, add that line to its own list
+    Repeat both of these steps for Echo Replies
+    """
+
     while line:
         line=file.readline()
         if "Echo (ping) request" in line:
