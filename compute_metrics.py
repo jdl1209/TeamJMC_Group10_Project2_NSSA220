@@ -16,6 +16,9 @@ def compute_metrics(node):
 
     request_bytes_sent=0
     request_bytes_received=0
+    request_data_sent=0
+    request_data_received=0
+    
 
     """
     If Source is 192.168.100.1 and echo request == Request Sent, add that line to its own list
@@ -57,9 +60,13 @@ def compute_metrics(node):
             line=file.readline()
     for packet in req_sent_list:
         request_bytes_sent+=int(packet[5])
+        # NO IDEA IF WE'RE SUPPOSED TO SUBTRACT 42 BUT THE NUMBERS ARE CORRECT??
+        request_data_sent+=int(packet[5])-42
 
     for packet in req_received_list:
         request_bytes_received+=int(packet[5])
+        request_data_received+=int(packet[5])-42
+
 
     print("Requests Sent: " + str(request_sent))
     print("Requests Received: " + str(request_received))
@@ -68,6 +75,8 @@ def compute_metrics(node):
 
     print("Echo Request Bytes Sent: " + str(request_bytes_sent))
     print("Echo Request Bytes Received: " + str(request_bytes_received))
+    print("Echo Request Data Sent: " + str(request_data_sent))
+    print("Echo Request Data Received: " + str(request_data_received))
 
     
 
