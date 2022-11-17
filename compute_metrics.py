@@ -78,6 +78,8 @@ def compute_metrics(node):
     print("Echo Request Data Sent: " + str(request_data_sent))
     print("Echo Request Data Received: " + str(request_data_received))
 
+    print("\n")
     
 
 compute_metrics("Node1_filtered.txt")
+compute_metrics("Node2_filtered.txt")
