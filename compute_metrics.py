@@ -18,6 +18,8 @@ def compute_metrics(node_file, address):
     request_bytes_received=0
     request_data_sent=0
     request_data_received=0
+
+    times=[]
     
 
     """
@@ -34,7 +36,13 @@ def compute_metrics(node_file, address):
             for item in line:
                 if item != "":
                     final.append(item)
+
+            # Fixes Some formatting
             final[6:9] = [' '.join(final[6:9])]
+            final[10:13] = [' '.join(final[10:13])]
+            final[10] = final[10].replace("(", "")
+            final[10] = final[10].replace(")", "")
+            
             if final[2]==address and final[6]=="Echo (ping) request":
                 req_sent_list.append(final)
                 request_sent+=1
@@ -48,7 +56,13 @@ def compute_metrics(node_file, address):
             for item in line:
                 if item != "":
                     final.append(item)
+
+            # Fixes Some formatting        
             final[6:9] = [' '.join(final[6:9])]
+            final[10:13] = [' '.join(final[10:13])]
+            final[10] = final[10].replace("(", "")
+            final[10] = final[10].replace(")", "")
+            
             if final[2]==address and final[6]=="Echo (ping) reply":
                 reply_sent_list.append(final)
                 reply_sent+=1
@@ -68,6 +82,11 @@ def compute_metrics(node_file, address):
     for packet in req_received_list:
         request_bytes_received+=int(packet[5])
         request_data_received+=int(packet[5])-42
+    
+    
+
+    
+
 
 
     print("Requests Sent: " + str(request_sent))
@@ -79,6 +98,7 @@ def compute_metrics(node_file, address):
     print("Echo Request Bytes Received: " + str(request_bytes_received))
     print("Echo Request Data Sent: " + str(request_data_sent))
     print("Echo Request Data Received: " + str(request_data_received))
+
 
     print("\n")
     
