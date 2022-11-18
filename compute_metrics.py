@@ -1,5 +1,5 @@
-def compute_metrics(node):
-    file = open(node)
+def compute_metrics(node_file, address):
+    file = open(node_file)
     line = file.readline()
 
     # Totals of Requests/Replies Sent & Recieved
@@ -35,10 +35,10 @@ def compute_metrics(node):
                 if item != "":
                     final.append(item)
             final[6:9] = [' '.join(final[6:9])]
-            if final[2]=="192.168.100.1" and final[6]=="Echo (ping) request":
+            if final[2]==address and final[6]=="Echo (ping) request":
                 req_sent_list.append(final)
                 request_sent+=1
-            if final[3]=="192.168.100.1" and final[6]=="Echo (ping) request":
+            if final[3]==address and final[6]=="Echo (ping) request":
                 req_received_list.append(final)
                 request_received+=1
             line=file.readline()
@@ -49,15 +49,17 @@ def compute_metrics(node):
                 if item != "":
                     final.append(item)
             final[6:9] = [' '.join(final[6:9])]
-            if final[2]=="192.168.100.1" and final[6]=="Echo (ping) reply":
+            if final[2]==address and final[6]=="Echo (ping) reply":
                 reply_sent_list.append(final)
                 reply_sent+=1
-            if final[3]=="192.168.100.1" and final[6]=="Echo (ping) reply":
+            if final[3]==address and final[6]=="Echo (ping) reply":
                 reply_received_list.append(final)
                 reply_received+=1
             line=file.readline()
         else:
             line=file.readline()
+    file.close()
+
     for packet in req_sent_list:
         request_bytes_sent+=int(packet[5])
         # NO IDEA IF WE'RE SUPPOSED TO SUBTRACT 42 BUT THE NUMBERS ARE CORRECT??
@@ -81,5 +83,7 @@ def compute_metrics(node):
     print("\n")
     
 
-compute_metrics("Node1_filtered.txt")
-compute_metrics("Node2_filtered.txt")
+compute_metrics("Node1_filtered.txt", "192.168.100.1")
+compute_metrics("Node2_filtered.txt", "192.168.100.1")
+compute_metrics("Node3_filtered.txt", "192.168.100.1")
+compute_metrics("Node4_filtered.txt", "192.168.100.1")
