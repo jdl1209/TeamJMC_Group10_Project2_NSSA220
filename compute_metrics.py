@@ -95,18 +95,27 @@ def compute_metrics(node_file, address):
     find the average RTT
     """
     times=[]
+    hops=[]
     count=0
     while count<= len(req_sent_list)-1:
         rtt=float(reply_received_list[count][1])-float(req_sent_list[count][1])
+        hop_count=(float(req_sent_list[count][9].split("=")[1])-float(reply_received_list[count][9].split("=")[1]))+1
+        hops.append(hop_count)
         times.append(rtt)
         count+=1
 
+
+
     total=0
+    total_hop=0
     for rtt in times:
         total+=rtt
+    for hop in hops:
+        total_hop+=hop
     
     average=round(total/len(times)*1000,2)
-
+    average_hop=round(total_hop/len(hops),2)
+    
     print("Requests Sent: " + str(request_sent))
     print("Requests Received: " + str(request_received))
     print("Replies Sent: " + str(reply_sent))
@@ -118,6 +127,8 @@ def compute_metrics(node_file, address):
     print("Echo Request Data Received: " + str(request_data_received) + "\n")
 
     print("Average RTT (ms): " + str(average))
+    print("Average Hops: " + str(average_hop))
+  
 
     
 
