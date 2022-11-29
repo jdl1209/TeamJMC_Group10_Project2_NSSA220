@@ -19,6 +19,7 @@ def compute_metrics(node_file, address):
     request_data_sent=0
     request_data_received=0
 
+    # Find average time of requests and subtract average response time??
     times=[]
     
 
@@ -83,7 +84,17 @@ def compute_metrics(node_file, address):
         request_bytes_received+=int(packet[5])
         request_data_received+=int(packet[5])-42
     
+    count=0
+    while count<= len(req_sent_list)-1:
+        rtt=float(reply_received_list[count][1])-float(req_sent_list[count][1])
+        times.append(rtt)
+        count+=1
+
+    total=0
+    for rtt in times:
+        total+=rtt
     
+    average=round(total/len(times)*1000,2)
 
     
 
@@ -97,13 +108,11 @@ def compute_metrics(node_file, address):
     print("Echo Request Bytes Sent: " + str(request_bytes_sent))
     print("Echo Request Bytes Received: " + str(request_bytes_received))
     print("Echo Request Data Sent: " + str(request_data_sent))
-    print("Echo Request Data Received: " + str(request_data_received))
+    print("Echo Request Data Received: " + str(request_data_received) + "\n")
 
+    print("Average RTT (ms): " + str(average))
 
-    print("\n")
     
 
 compute_metrics("Node1_filtered.txt", "192.168.100.1")
-compute_metrics("Node2_filtered.txt", "192.168.100.1")
-compute_metrics("Node3_filtered.txt", "192.168.100.1")
-compute_metrics("Node4_filtered.txt", "192.168.100.1")
+
