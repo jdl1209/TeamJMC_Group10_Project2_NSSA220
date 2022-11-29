@@ -13,11 +13,6 @@ def compute_metrics(node_file, address):
     req_received_list=[]
     reply_sent_list=[]
     reply_received_list=[]
-
-    request_bytes_sent=0
-    request_bytes_received=0
-    request_data_sent=0
-    request_data_received=0
     
     """
     If Source is 192.168.100.1 and echo request == Request Sent, add that line to its own list
@@ -70,6 +65,12 @@ def compute_metrics(node_file, address):
         else:
             line=file.readline()
     file.close()
+
+    # Variables for bytes sent/received
+    request_bytes_sent=0
+    request_bytes_received=0
+    request_data_sent=0
+    request_data_received=0
 
     for packet in req_sent_list:
         request_bytes_sent+=int(packet[5])
