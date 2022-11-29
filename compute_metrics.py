@@ -107,10 +107,6 @@ def compute_metrics(node_file, address):
     
     average=round(total/len(times)*1000,2)
 
-    
-
-
-
     print("Requests Sent: " + str(request_sent))
     print("Requests Received: " + str(request_received))
     print("Replies Sent: " + str(reply_sent))
