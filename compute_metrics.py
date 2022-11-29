@@ -18,11 +18,7 @@ def compute_metrics(node_file, address):
     request_bytes_received=0
     request_data_sent=0
     request_data_received=0
-
-    # Find average time of requests and subtract average response time??
-    times=[]
     
-
     """
     If Source is 192.168.100.1 and echo request == Request Sent, add that line to its own list
     If Destination is 192.168.100.1 and echo request == Request Recieved, add that line to its own list
@@ -84,6 +80,20 @@ def compute_metrics(node_file, address):
         request_bytes_received+=int(packet[5])
         request_data_received+=int(packet[5])-42
     
+
+    """
+    Goes through the requests sent and recieved for the chosen 
+    IP address and subtracts the time the reply was received from
+    the time the request was sent.
+
+    That time is added to an overall list of times
+
+    A loop goes through the list of time and adds all times together
+
+    That total time is divided by how many times were recorded to
+    find the average RTT
+    """
+    times=[]
     count=0
     while count<= len(req_sent_list)-1:
         rtt=float(reply_received_list[count][1])-float(req_sent_list[count][1])
