@@ -104,8 +104,6 @@ def compute_metrics(node_file, address):
         times.append(rtt)
         count+=1
 
-
-
     total=0
     total_hop=0
     for rtt in times:
@@ -127,6 +125,10 @@ def compute_metrics(node_file, address):
     print("Echo Request Data Received: " + str(request_data_received) + "\n")
 
     print("Average RTT (ms): " + str(average))
+    print("Echo Request Throughput (kB/sec): ")
+    print("Echo Request Goodput (kB/sec): ")
+    print("Average Reply Delay (us): " + "\n")
+
     print("Average Hops: " + str(average_hop))
   
 
