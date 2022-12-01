@@ -1,70 +1,5 @@
-def compute_metrics(node_file, address):
-    file = open(node_file)
-    line = file.readline()
-
-    # Totals of Requests/Replies Sent & Recieved
-    request_sent=0
-    request_received=0
-    reply_sent=0
-    reply_received=0
-
-    # Lists for Requests/Replies Sent & Recieved
-    req_sent_list=[]
-    req_received_list=[]
-    reply_sent_list=[]
-    reply_received_list=[]
-    
-    """
-    If Source is 192.168.100.1 and echo request == Request Sent, add that line to its own list
-    If Destination is 192.168.100.1 and echo request == Request Recieved, add that line to its own list
-    Repeat both of these steps for Echo Replies
-    """
-
-    while line:
-        line=file.readline()
-        if "Echo (ping) request" in line:
-            line=line.strip().split(" ")
-            final=[]
-            for item in line:
-                if item != "":
-                    final.append(item)
-
-            # Fixes Some formatting
-            final[6:9] = [' '.join(final[6:9])]
-            final[10:13] = [' '.join(final[10:13])]
-            final[10] = final[10].replace("(", "")
-            final[10] = final[10].replace(")", "")
-            
-            if final[2]==address and final[6]=="Echo (ping) request":
-                req_sent_list.append(final)
-                request_sent+=1
-            if final[3]==address and final[6]=="Echo (ping) request":
-                req_received_list.append(final)
-                request_received+=1
-            line=file.readline()
-        elif "Echo (ping) reply" in line:
-            line=line.strip().split(" ")
-            final=[]
-            for item in line:
-                if item != "":
-                    final.append(item)
-
-            # Fixes Some formatting        
-            final[6:9] = [' '.join(final[6:9])]
-            final[10:13] = [' '.join(final[10:13])]
-            final[10] = final[10].replace("(", "")
-            final[10] = final[10].replace(")", "")
-            
-            if final[2]==address and final[6]=="Echo (ping) reply":
-                reply_sent_list.append(final)
-                reply_sent+=1
-            if final[3]==address and final[6]=="Echo (ping) reply":
-                reply_received_list.append(final)
-                reply_received+=1
-            line=file.readline()
-        else:
-            line=file.readline()
-    file.close()
+import packet_parser
+def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_received_list):
 
     # Variables for bytes sent/received
     request_bytes_sent=0
@@ -113,11 +48,20 @@ def compute_metrics(node_file, address):
     
     average=round(total/len(times)*1000,2)
     average_hop=round(total_hop/len(hops),2)
+
+
+
+
+
+
+
+
+
     
-    print("Requests Sent: " + str(request_sent))
-    print("Requests Received: " + str(request_received))
-    print("Replies Sent: " + str(reply_sent))
-    print("Replies Received: " + str(reply_received))
+    # print("Requests Sent: " + str(request_sent))
+    # print("Requests Received: " + str(request_received))
+    # print("Replies Sent: " + str(reply_sent))
+    # print("Replies Received: " + str(reply_received))
 
     print("Echo Request Bytes Sent: " + str(request_bytes_sent))
     print("Echo Request Bytes Received: " + str(request_bytes_received))
@@ -132,7 +76,11 @@ def compute_metrics(node_file, address):
     print("Average Hops: " + str(average_hop))
   
 
-    
+l1=[]
+l2=[]
+l3=[]
+l4=[]
+packet_parser.packet_parser("Node1_filtered.txt", "192.168.100.1", l1, l2, l3, l4)
+compute_metrics(l1, l2, l3, l4)
 
-compute_metrics("Node1_filtered.txt", "192.168.100.1")
 
