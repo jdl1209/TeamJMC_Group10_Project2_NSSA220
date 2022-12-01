@@ -13,10 +13,14 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     request_data_sent=0
     request_data_received=0
 
+    total_f_size=0
+    
+
     for packet in req_sent_list:
         request_bytes_sent+=int(packet[5])
         # NO IDEA IF WE'RE SUPPOSED TO SUBTRACT 42 BUT THE NUMBERS ARE CORRECT??
         request_data_sent+=int(packet[5])-42
+        total_f_size+=int(packet[5])
 
     for packet in req_received_list:
         request_bytes_received+=int(packet[5])
@@ -45,15 +49,19 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
         times.append(rtt)
         count+=1
 
-    total=0
+    total_rtt=0
     total_hop=0
     for rtt in times:
-        total+=rtt
+        total_rtt+=rtt
     for hop in hops:
         total_hop+=hop
     
-    average=round(total/len(times)*1000,2)
+    average=round(total_rtt/len(times)*1000,2)
     average_hop=round(total_hop/len(hops),2)
+
+    throughput=round((total_f_size/total_rtt)/1000, 1)
+    goodput=round((request_data_sent/total_rtt)/1000, 1)
+    
   
     print("Requests Sent: " + str(request_sent))
     print("Requests Received: " + str(request_received))
@@ -66,8 +74,8 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     print("Echo Request Data Received: " + str(request_data_received) + "\n")
 
     print("Average RTT (ms): " + str(average))
-    print("Echo Request Throughput (kB/sec): ")
-    print("Echo Request Goodput (kB/sec): ")
+    print("Echo Request Throughput (kB/sec): " + str(throughput))
+    print("Echo Request Goodput (kB/sec): " + str(goodput))
     print("Average Reply Delay (us): " + "\n")
 
     print("Average Hops: " + str(average_hop))
