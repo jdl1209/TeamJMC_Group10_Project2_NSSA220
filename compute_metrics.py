@@ -91,14 +91,8 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     print("Echo Request Goodput (kB/sec): " + str(goodput))
     print("Average Reply Delay (us): " + str(average_delay) + "\n")
 
-    print("Average Hops: " + str(average_hop))
+    print("Average Hops: " + str(average_hop) + "\n")
   
 
-l1=[]
-l2=[]
-l3=[]
-l4=[]
-packet_parser.packet_parser("Node1_filtered.txt", "192.168.100.1", l1, l2, l3, l4)
-compute_metrics(l1, l2, l3, l4)
 
 
