@@ -53,13 +53,3 @@ def packet_parser(node_file, address, req_s_list, req_r_list, reply_s_list, repl
         else:
             line=file.readline()     
     file.close()
-    
-    
-l1=[]
-l2=[]
-l3=[]
-l4=[]
-packet_parser("Node1_filtered.txt", "192.168.100.1",l1, l2, l3, l4)
-print(l4)
-
-
