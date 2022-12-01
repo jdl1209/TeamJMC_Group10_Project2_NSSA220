@@ -41,28 +41,41 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     """
     times=[]
     hops=[]
+    delay_times=[]
     count=0
     while count<= len(req_sent_list)-1:
         rtt=float(reply_received_list[count][1])-float(req_sent_list[count][1])
         hop_count=(float(req_sent_list[count][9].split("=")[1])-float(reply_received_list[count][9].split("=")[1]))+1
         hops.append(hop_count)
         times.append(rtt)
+        
         count+=1
+
+    count2=0
+    while count2 <= len(req_received_list)-1:
+        delay=float(reply_sent_list[count2][1])-float(req_received_list[count2][1])
+        delay_times.append(delay)
+        count2+=1
 
     total_rtt=0
     total_hop=0
+    total_time=0
     for rtt in times:
         total_rtt+=rtt
     for hop in hops:
         total_hop+=hop
+    for delay in delay_times:
+        total_time+=delay
+    
+    average_delay=round(total_time/len(delay_times)*1000000, 2)
     
     average=round(total_rtt/len(times)*1000,2)
     average_hop=round(total_hop/len(hops),2)
 
     throughput=round((total_f_size/total_rtt)/1000, 1)
     goodput=round((request_data_sent/total_rtt)/1000, 1)
-    
   
+    
     print("Requests Sent: " + str(request_sent))
     print("Requests Received: " + str(request_received))
     print("Replies Sent: " + str(reply_sent))
@@ -76,7 +89,7 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     print("Average RTT (ms): " + str(average))
     print("Echo Request Throughput (kB/sec): " + str(throughput))
     print("Echo Request Goodput (kB/sec): " + str(goodput))
-    print("Average Reply Delay (us): " + "\n")
+    print("Average Reply Delay (us): " + str(average_delay) + "\n")
 
     print("Average Hops: " + str(average_hop))
   
