@@ -1,18 +1,6 @@
-def packet_parser(node_file, address):
+def packet_parser(node_file, address, req_s_list, req_r_list, reply_s_list, reply_r_list):
     file = open(node_file)
     line = file.readline()
-
-    # Totals of Requests/Replies Sent & Recieved
-    request_sent=0
-    request_received=0
-    reply_sent=0
-    reply_received=0
-
-    # Lists for Requests/Replies Sent & Recieved
-    req_sent_list=[]
-    req_received_list=[]
-    reply_sent_list=[]
-    reply_received_list=[]
     
     """
     If Source is 192.168.100.1 and echo request == Request Sent, add that line to its own list
@@ -36,11 +24,11 @@ def packet_parser(node_file, address):
             final[10] = final[10].replace(")", "")
             
             if final[2]==address and final[6]=="Echo (ping) request":
-                req_sent_list.append(final)
-                request_sent+=1
+                req_s_list.append(final)
+                
             if final[3]==address and final[6]=="Echo (ping) request":
-                req_received_list.append(final)
-                request_received+=1
+                req_r_list.append(final)
+    
             line=file.readline()
         elif "Echo (ping) reply" in line:
             line=line.strip().split(" ")
@@ -56,12 +44,22 @@ def packet_parser(node_file, address):
             final[10] = final[10].replace(")", "")
             
             if final[2]==address and final[6]=="Echo (ping) reply":
-                reply_sent_list.append(final)
-                reply_sent+=1
+                reply_s_list.append(final)
+               
             if final[3]==address and final[6]=="Echo (ping) reply":
-                reply_received_list.append(final)
-                reply_received+=1
+                reply_r_list.append(final)
+                
             line=file.readline()
         else:
-            line=file.readline()
+            line=file.readline()     
     file.close()
+    
+    
+l1=[]
+l2=[]
+l3=[]
+l4=[]
+packet_parser("Node1_filtered.txt", "192.168.100.1",l1, l2, l3, l4)
+print(l4)
+
+
