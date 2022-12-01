@@ -62,9 +62,3 @@ def filter_packets(text_file):
             string=items[0] + "\n" + items[1] + "\n" + items[2] + items[3] + "\n" + items[4] + "\n" +items[5] + "\n" + items[6] + "\n" + items[7] + "\n\n"
             n2.write(string)
 
-def main():
-    filter_packets("Node1.txt")
-    filter_packets("Node2.txt")
-    filter_packets("Node3.txt")
-    filter_packets("Node4.txt")
-main()
