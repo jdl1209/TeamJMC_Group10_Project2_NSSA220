@@ -1,6 +1,12 @@
 import packet_parser
 def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_received_list):
 
+    # Calculates how many requests/replies were sent/received
+    request_sent=len(req_sent_list)
+    request_received=len(req_received_list)
+    reply_sent=len(reply_sent_list)
+    reply_received=len(reply_received_list)
+
     # Variables for bytes sent/received
     request_bytes_sent=0
     request_bytes_received=0
@@ -48,20 +54,11 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     
     average=round(total/len(times)*1000,2)
     average_hop=round(total_hop/len(hops),2)
-
-
-
-
-
-
-
-
-
-    
-    # print("Requests Sent: " + str(request_sent))
-    # print("Requests Received: " + str(request_received))
-    # print("Replies Sent: " + str(reply_sent))
-    # print("Replies Received: " + str(reply_received))
+  
+    print("Requests Sent: " + str(request_sent))
+    print("Requests Received: " + str(request_received))
+    print("Replies Sent: " + str(reply_sent))
+    print("Replies Received: " + str(reply_received))
 
     print("Echo Request Bytes Sent: " + str(request_bytes_sent))
     print("Echo Request Bytes Received: " + str(request_bytes_received))
