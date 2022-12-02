@@ -3,7 +3,7 @@ Node1
 Echo Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received
 128,49,49,128
 Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)
-89452,84076
+89452,51904
 Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)
 84076,49846
 
@@ -18,7 +18,7 @@ Node2
 Echo Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received
 82,160,160,82
 Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)
-53040,49596
+53040,113816
 Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)
 49596,107096
 
@@ -33,7 +33,7 @@ Node3
 Echo Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received
 72,98,98,72
 Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)
-53070,50046
+53070,62908
 Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)
 50046,58792
 
@@ -48,7 +48,7 @@ Node4
 Echo Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received
 108,86,86,108
 Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)
-75232,70696
+75232,42388
 Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)
 70696,38776
 

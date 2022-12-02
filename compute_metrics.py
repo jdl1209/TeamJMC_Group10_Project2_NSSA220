@@ -93,7 +93,7 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     f.write("\n\nEcho Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received\n")
     f.write(str(request_sent)  + "," + str(request_received) + "," + str(reply_sent)  + "," + str(reply_received) + "\n")
     f.write("Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)\n")
-    f.write(str(request_bytes_sent) + "," + str(request_data_sent) + "\n")
+    f.write(str(request_bytes_sent) + "," + str(request_bytes_received) + "\n")
     f.write("Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)" + "\n")
     f.write(str(request_data_sent) + "," + str(request_data_received) + "\n\n")
     f.write("Average RTT (milliseconds)" + "," + str(average) + "\n")
