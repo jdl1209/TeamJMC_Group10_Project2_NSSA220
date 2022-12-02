@@ -31,11 +31,8 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     Goes through the requests sent and recieved for the chosen 
     IP address and subtracts the time the reply was received from
     the time the request was sent.
-
     That time is added to an overall list of times
-
     A loop goes through the list of time and adds all times together
-
     That total time is divided by how many times were recorded to
     find the average RTT
     """
@@ -92,7 +89,20 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
     print("Average Reply Delay (us): " + str(average_delay) + "\n")
 
     print("Average Hops: " + str(average_hop) + "\n")
-  
 
+    f = open("Project2_Output_TeamJMC.csv", "a")
+    f.write("\n\nEcho Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received\n")
+    f.write(str(request_sent)  + "," + str(request_received) + "," + str(reply_sent)  + "," + str(reply_received) + "\n")
+    f.write("Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)\n")
+    f.write(str(request_bytes_sent) + "," + str(request_data_sent) + "\n")
+    f.write("Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)" + "\n")
+    f.write(str(request_data_sent) + "," + str(request_data_received) + "\n\n")
+    f.write("Average RTT (milliseconds)" + "," + str(average) + "\n")
+    f.write("Echo Request Throughput (kB/sec)" + "," + str(throughput) + "\n")
+    f.write("Echo Request Goodput (kB/sec)" + "," + str(goodput) + "\n")
+    f.write("Average Reply Delay (microseconds)" + "," + str(average_delay) + "\n")
+    f.write("Average Echo Request Hop Count" + "," + str(average_hop) + "\n\n")
+
+    f.close()
 
 
