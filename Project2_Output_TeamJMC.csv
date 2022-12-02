@@ -16,45 +16,45 @@ Average Echo Request Hop Count,1.91
 Node2
 
 Echo Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received
-210,209,209,210
+82,160,160,82
 Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)
-142492,133672
+53040,49596
 Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)
-133672,156942
+49596,107096
 
-Average RTT (milliseconds),2.61
-Echo Request Throughput (kB/sec),260.1
-Echo Request Goodput (kB/sec),244.0
-Average Reply Delay (microseconds),55.62
-Average Echo Request Hop Count,2.07
+Average RTT (milliseconds),2.68
+Echo Request Throughput (kB/sec),241.6
+Echo Request Goodput (kB/sec),225.9
+Average Reply Delay (microseconds),55.65
+Average Echo Request Hop Count,2.32
 
 Node3
 
 Echo Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received
-282,307,307,282
+72,98,98,72
 Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)
-195562,183718
+53070,50046
 Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)
-183718,215734
+50046,58792
 
-Average RTT (milliseconds),2.65
-Echo Request Throughput (kB/sec),261.5
-Echo Request Goodput (kB/sec),245.6
-Average Reply Delay (microseconds),55.37
-Average Echo Request Hop Count,2.04
+Average RTT (milliseconds),2.78
+Echo Request Throughput (kB/sec),265.2
+Echo Request Goodput (kB/sec),250.1
+Average Reply Delay (microseconds),54.86
+Average Echo Request Hop Count,1.94
 
 Node4
 
 Echo Requests Sent,Echo Requests Received, Echo Replies Sent,Echo Replies Received
-390,393,393,390
+108,86,86,108
 Echo Request Bytes Sent (bytes),Echo Request Data Sent (bytes)
-270794,254414
+75232,70696
 Echo Request Bytes Received (bytes),Echo Request Data Received (bytes)
-254414,254510
+70696,38776
 
-Average RTT (milliseconds),2.76
-Echo Request Throughput (kB/sec),251.6
-Echo Request Goodput (kB/sec),236.4
-Average Reply Delay (microseconds),54.92
-Average Echo Request Hop Count,2.14
+Average RTT (milliseconds),3.04
+Echo Request Throughput (kB/sec),229.3
+Echo Request Goodput (kB/sec),215.4
+Average Reply Delay (microseconds),53.31
+Average Echo Request Hop Count,2.43
 
