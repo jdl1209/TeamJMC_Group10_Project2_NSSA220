@@ -2,11 +2,6 @@ import filter_packets
 import packet_parser
 import compute_metrics
 
-l1 = []
-l2 = []
-l3 = []
-l4 = []
-
 nodes = ["Node1.txt", "Node2.txt", "Node3.txt", "Node4.txt"]
 
 for node in nodes:
@@ -18,6 +13,11 @@ addresses = ["192.168.100.1", "192.168.100.2", "192.168.200.1", "192.168.200.2"]
 
 i = 0
 for filtered in nodes_filtered:
+    
+    l1 = []
+    l2 = []
+    l3 = []
+    l4 = []
 
     node_name_list = filtered.split("_")
     node_name = node_name_list[0]
