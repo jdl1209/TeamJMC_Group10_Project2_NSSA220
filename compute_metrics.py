@@ -18,7 +18,6 @@ def compute_metrics(req_sent_list, req_received_list, reply_sent_list, reply_rec
 
     for packet in req_sent_list:
         request_bytes_sent+=int(packet[5])
-        # NO IDEA IF WE'RE SUPPOSED TO SUBTRACT 42 BUT THE NUMBERS ARE CORRECT??
         request_data_sent+=int(packet[5])-42
         total_f_size+=int(packet[5])
 
